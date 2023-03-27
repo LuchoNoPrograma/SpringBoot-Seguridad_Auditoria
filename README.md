@@ -5,9 +5,10 @@ Este es un proyecto de demostración de Spring Boot, que incluye dependencias pa
 La aplicación ofrece un sistema de autenticación y autorización que utiliza la base de datos 
 para validar las credenciales de los usuarios y determinar sus roles y autoridades. 
 Los usuarios pueden acceder a diferentes secciones de la aplicación en función de sus roles y autoridades. 
-Además, se utiliza una superclase Auditoria para implementar la auditoría de acciones realizadas por los usuarios, 
-como iniciar sesión o actualizar información del perfil.
-
+Además, se utiliza una superclase Auditoria para implementar la auditoría de acciones realizadas por los usuarios.  
+No se implementaron los controladores para realizar algun proceso de escritura, 
+por lo tanto no es posible visualizar la Auditoria de quien realizo dicha operacion de escritura
+  
 ## Dependencias: 
 **spring-boot-starter-data-jpa / 2.7.10** 
 **spring-boot-starter-security / 2.7.10**  
