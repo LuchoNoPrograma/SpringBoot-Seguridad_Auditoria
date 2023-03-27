@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>COORDINADOR_PROGRAMA</h1>
+    <p>
+        Solo pueden ingresar aquellos usuarios que tienen el rol asociado de 'COORDINADOR_PROGRAMA' <br>
+        El usuario 1(jefesistemas): tiene todos los roles/autoridades pero accede a esta pagina por la anotacion @PreAuthorize de su controlador <br>
+        El usuario 2(coordinador): tiene el rol para acceder a esta pagina por la anotacion @PreAuthorize de su controlador<br>
+        <br>
+        Nota.- No es necesario poner ROLE_COORDINADOR_PROGRAMA <br>
+        con tal de que hayas establecido ROLE_COORDINADOR_PROGRAMA en la DB <br>
+        Por lo tanto cuando se use hasRole() o hasAnyRole(), escribir en parametro el nombre del rol sin prefijo
+        <br>
+        <br>
+        @PreAuthorize("hasAnyRole('COORDINADOR_PROGRAMA')") <br>
+        public String cualquieraQueTengaRolCoordinador(){ <br>
+            return "esta-pagina"; <br>
+        } <br>
+
+        hasAnyRole hace lo siguiente: <br>
+            Si el usuario autenticado tiene ALGUN rol("COORDINADOR_PROGRAMA"){ <br>
+                Acceso al metodo <br>
+            }
+        <br>
+        <br>
+
+        <a th:href="@{/programas/reportes/generar}">Generar Reporte</a><br>
+        <a th:href="@{/programas/reportes/ver}">Ver Reporte</a><br>
+    </p>
+</body>
+</html>

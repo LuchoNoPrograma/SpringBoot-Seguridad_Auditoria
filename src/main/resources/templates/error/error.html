@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error Desconocido - Erro Desconocido</title>
+    <meta charset="UTF-8"/>
+</head>
+
+<body class="text-dark">
+    <div class="container text-center">
+        <h1>Error <span th:text="${status}"></span></h1>
+    </div>
+    <div class="container-fluid">
+        <table class="table table-striped-columns">
+            <tr>
+                <td>Fecha:</td>
+                <td th:text="${timestamp}"></td>
+            </tr>
+            <tr>
+                <td>Ruta:</td>
+                <td th:text="${path}"></td>
+            </tr>
+            <tr>
+                <td>Error:</td>
+                <td th:text="${error}"></td>
+            </tr>
+            <tr>
+                <td>Estado:</td>
+                <td th:text="${status}"></td>
+            </tr>
+            <tr>
+                <td>Mensaje:</td>
+                <td th:text="${message}"></td>
+            </tr>
+            <tr>
+                <td>Excepcion:</td>
+                <td th:text="${exception}"></td>
+            </tr>
+            <tr>
+                <td>Stack Trace:</td>
+                <td>
+                    <pre th:text="${trace}"></pre>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

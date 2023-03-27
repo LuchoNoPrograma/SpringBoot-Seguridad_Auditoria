@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JEFE DE SISTEMAS</h1>
+    <p>
+        Solo pueden ingresar aquellos usuarios que tienen el rol asociado de 'JEFE_SISTEMAS' <br>
+        El usuario 1(jefe-sistemas): tiene todos los roles/autoridades y accede a esta pagina por la anotacion @PreAuthorize de su controlador <br>
+        <br>
+        Nota.- No es necesario poner ROLE_JEFE_SISTEMAS <br>
+        con tal de que hayas establecido ROLE_JEFE_SISTEMAS en la DB <br>
+        Por lo tanto cuando se use hasRole() o hasAnyRole(), escribir en parametro el nombre del rol sin prefijo
+        <br>
+        <br>
+        @PreAuthorize("hasRole('JEFE_SISTEMAS')") <br>
+        public String soloElQueTengaRolJefeSistemas(){ <br>
+            return "esta-pagina"; <br>
+        } <br>
+
+        hasRole hace lo siguiente: <br>
+            Si el usuario autenticado tiene ESPECIFICAMENTE rol("JEFE_SISTEMAS"){ <br>
+                Acceso al metodo <br>
+            } <br>
+    </p>
+</body>
+</html>

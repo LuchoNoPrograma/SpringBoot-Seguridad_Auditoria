@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Administrar Rol</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <h1>Administrar Autoridad</h1>
+    <p>Ahora acceder a una pagina atravez de @PathVariable es segura con la nueva configuracion de Seguridad</p>
+
+    <p>idAutoridad: <span th:text="${autoridad.idAutoridad}"></span></p>
+    <p>autoridad: <span th:text="${autoridad.autoridad}"></span></p>
+
+    <th:block th:if="${operacion} == 'EAGER'">
+        <p>Lista relacionada con SecUsuario cargada con EAGER</p>
+        <ul>
+            <li th:each="usuario : ${usuarios}">
+                <p>
+                    idUsuario: <span th:text="${usuario.idUsuario}"></span>
+                    <br>
+                    username: <span th:text="${usuario.username}"></span>
+                </p>
+            </li>
+        </ul>
+    </th:block>
+
+    <th:block th:if="${operacion} == 'LAZY'">
+        <p>No hay lista para mostrar porque la carga de la relacion es LAZY</p>
+    </th:block>
+
+    <a th:href="@{/inicio}">Ir a Inicio</a>
+</body>
+
+</html>
