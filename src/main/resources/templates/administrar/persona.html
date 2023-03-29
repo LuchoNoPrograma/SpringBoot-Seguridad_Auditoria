@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adminstrar Persona</title>
+</head>
+<style>
+    .tabla-personas {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 10px 0;
+    }
+
+    .tabla-personas th,
+    .tabla-personas td {
+        text-align: left;
+        padding: 8px;
+        border: 1px solid #ddd;
+    }
+
+    .tabla-personas th {
+        background-color: #f2f2f2;
+    }
+
+    .tabla-personas tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .tabla-personas tr:hover {
+        background-color: #ddd;
+    }
+</style>
+
+<body>
+    <h1>Administrar Personas</h1>
+    <h2 th:if="${errorNoExistente} != null" th:text="${errorNoExistente}"></h2>
+    <th:block th:if="${operacion} == 'tabla'">
+        <form class="formulario" th:action="@{/persona/formulario}" method="GET">
+            <button type="submit">Registrar</button>
+        </form>
+        <br>
+        <form th:action="@{/persona/dip}" method="GET">
+            <label>Buscar por Dip</label>
+            <input type="text" name="dip">
+            <button type="submit">Buscar</button>
+        </form>
+        <br>
+        <form th:action="@{/persona/email}" method="GET">
+            <label>Buscar por Email</label>
+            <input type="email" name="email">
+            <button type="submit">Buscar</button>
+        </form>
+
+        <a th:href="@{/persona/inicio}">Recargar</a>
+        <table class="tabla-personas">
+            <thead>
+                <tr>
+                    <th>Nombre Completo</th>
+                    <th>Dip</th>
+                    <th>Email</th>
+                    <th>Fecha de nacimiento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:if="${#lists.isEmpty(listaPersonas)}">
+                    <tr>
+                        <td>No</td>
+                        <td>Hay</td>
+                        <td>Registros</td>
+                        <td>Disponibles</td>
+                    </tr>
+                </th:block>
+                <tr th:each="persona : ${listaPersonas}">
+                    <td th:text="${persona.nombreCompleto}"></td>
+                    <td th:text="${persona.dip}"></td>
+                    <td th:text="${persona.email}"></td>
+                    <td th:text="${#temporals.format(persona.fechaNacimiento, 'dd-MM-yyyy')}"></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Nombre Completo</th>
+                    <th>Dip</th>
+                    <th>Email</th>
+                    <th>Fecha de nacimiento</th>
+                </tr>
+            </tfoot>
+        </table>
+    </th:block>
+
+
+    <th:block th:if="${operacion} == 'formulario'">
+        <form th:action="@{/persona/registrar}" th:object="${prsPersona}" method="POST">
+            <label>Nombres:</label>
+            <input type="text" th:field="*{nombres}" required><br><br>
+
+            <label>Apellido Paterno:</label>
+            <input type="text" th:field="*{paterno}" required><br><br>
+
+            <label>Apellido Materno:</label>
+            <input type="text" th:field="*{materno}" required><br><br>
+
+            <label>Documento de Identidad Personal (DIP):</label>
+            <input type="text" th:field="*{dip}" required><br><br>
+
+            <label>Fecha de nacimiento:</label>
+            <input type="date" th:field="*{fechaNacimiento}" required><br><br>
+
+            <label>Email:</label>
+            <input type="text" th:field="*{email}" required><br><br>
+
+            <button type="submit">Registrar Persona</button>
+        </form>
+
+        <div th:if="${error} == 'dip'">Excepcion, el dip ya existe</div>
+        <div th:if="${error} == 'email'">Excepcion, el email ya existe</div>
+    </th:block>
+
+    <a th:href="@{/inicio}">Volver</a>
+</body>
+
+</html>
